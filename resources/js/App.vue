@@ -1,3 +1,3 @@
 <template>
-    Olá Zuve - Saturno
+    Olá Zuve - <span>Saturno</span>
 </template>
