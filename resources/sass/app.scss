@@ -1,0 +1,21 @@
+$mode: default;
+
+// Initialize
+@import "init";
+
+// Components
+@import "./core/components/components";
+@import "components/components";
+
+// Layout
+@import "layout/layout";
+@import "./core/layout/docs/layout";
+
+
+body {
+    background-color: #a0aec0;
+
+    span {
+        color: red;
+    }
+}
