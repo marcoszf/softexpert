@@ -1,7 +1,8 @@
-body {
-    background-color: #a0aec0;
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
 
-    span {
-        color: red;
-    }
-}
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/dist/css/bootstrap';
