@@ -8,6 +8,9 @@ import '@/styles/styles.scss'
 import '@core/scss/index.scss'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://localhost:8000/api/';
 loadFonts()
 const app = createApp(App)
 app.use(vuetify)
