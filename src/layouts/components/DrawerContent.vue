@@ -66,11 +66,19 @@ const upgradeBanner = computed(() => {
         icon: { icon: 'mdi-users' }
       }"
       />
+      <VerticalNavLink
+          :item="{
+        title: 'Products',
+        to: 'products',
+        target: '',
+        icon: { icon: 'mdi-list-box' }
+      }"
+      />
     <VerticalNavLink
       :item="{
         title: 'Add Product',
         to: 'registerProduct',
-        target: '',
+        target: '_blank',
         icon: { icon: 'mdi-add' }
       }"
     />
