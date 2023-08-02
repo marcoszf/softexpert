@@ -13,7 +13,7 @@ const form = ref({
   name: '',
   price: '',
   description: '',
-  product_type_id: null,
+  product_type_id: 1,
 })
 const vuetifyTheme = useTheme()
 const authThemeMask = computed(() => {
