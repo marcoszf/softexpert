@@ -5,15 +5,15 @@ import {onMounted, ref} from 'vue';
 export default {
     setup() {
         // reactive state
-        let products = ref([]);
+        let products_sales = ref([]);
         // mounted
         onMounted(() => {
             // get api from laravel backend
             axios
-                .get('/products')
+                .get('/product-sales')
                 .then((res) => {
-                    // assign state products with response data
-                    products.value = res.data.data;
+                    // assign state products_sales with response data
+                    products_sales.value = res.data;
                 })
                 .catch((error) => {
                     console.log(error.res.data);
@@ -21,7 +21,7 @@ export default {
         });
 
         return {
-            products
+            products_sales
         };
     },
 };
@@ -31,7 +31,7 @@ export default {
     <VRow>
         <!-- basic -->
         <VCol cols="12">
-            <VCard title="Products">
+            <VCard title="Products Sales">
                 <VTable>
                     <thead>
                     <tr>
@@ -39,20 +39,20 @@ export default {
                             Id
                         </th>
                         <th className="text-center text-uppercase">
-                            name
+                            quantity
                         </th>
                         <th className="text-center text-uppercase">
-                            price
+                            Total Amount
                         </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr
-                        v-for="product in products">
-                        <td>{{ product.id }}</td>
-                        <td className="text-center">{{ product.name }}</td>
+                        v-for="sale in products_sales">
+                        <td>{{ sale.id }}</td>
+                        <td className="text-center">{{ sale.quantity }}</td>
                         <td className="text-center">
-                            {{ product.price }}
+                            {{ sale.total_amount }}
                         </td>
                     </tr>
                     </tbody>

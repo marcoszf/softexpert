@@ -6,13 +6,14 @@ import authV1MaskLight from '@/assets/images/pages/auth-v1-mask-light.png'
 import authV1Tree2 from '@/assets/images/pages/auth-v1-tree-2.png'
 import authV1Tree from '@/assets/images/pages/auth-v1-tree.png'
 import axios from 'axios';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 
 const form = ref({
   name: '',
   price: '',
   description: '',
+  product_type_id: null,
 })
 const vuetifyTheme = useTheme()
 const authThemeMask = computed(() => {
@@ -25,6 +26,20 @@ const snackbarColor = ref('success');
 const successMessage = ref('');
 const errorMessage = ref('');
 
+const productTypes = ref([]);
+
+onMounted(async () => {
+    // Fetch product types from the server
+    try {
+        const response = await axios.get('/product-types');
+        productTypes.value = response.data;
+        console.log(productTypes.value);
+    } catch (error) {
+        // Handle error if the API call fails
+        console.error('Error fetching product types:', error);
+    }
+});
+
 function register() {
     // messages.value.splice(0)
     // notification.value = ""
@@ -35,7 +50,7 @@ function register() {
             name: form.value.name,
             price: form.value.price,
             description: form.value.description,
-            product_type_id: 1,
+            product_type_id: form.value.product_type_id,
         },
         {
             headers: {
@@ -122,6 +137,19 @@ function resetForm() {
                       type="number"
                       step="0.01"
                   ></v-text-field>
+              </VCol>
+
+              <VCol cols="12">
+                  <v-select
+                      v-model="productTypesSelect"
+                      :items="productTypes"
+                      label="Product Type"
+                      item-text="name"
+                      item-value="id"
+                      persistent-hint
+                      return-object
+                      single-line
+                  ></v-select>
               </VCol>
 
             <VCol cols="12">

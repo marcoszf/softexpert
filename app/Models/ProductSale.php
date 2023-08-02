@@ -9,5 +9,7 @@ class ProductSale extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['quantity', 'total_amount', 'product_id'];
+
     protected $table = 'product_sales';
 }
